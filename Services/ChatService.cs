@@ -50,6 +50,8 @@ public class ChatService : IChatService
             // Register plugins with dependency injection
             _kernel.ImportPluginFromObject(new MemoryPlugin(_memoryService));
             _kernel.Plugins.AddFromType<MathPlugin>();
+            _kernel.Plugins.AddFromType<TimePlugin>();
+            
             
             _chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
 
