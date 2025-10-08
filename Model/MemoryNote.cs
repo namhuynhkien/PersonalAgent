@@ -1,6 +1,6 @@
-namespace PersonalAgent;
+namespace PersonalAgent.Model;
 
-internal class MemoryNote
+public class MemoryNote
 {
     public string Id { get; set; } = "";
     public string Content { get; set; } = "";
