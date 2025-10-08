@@ -60,7 +60,7 @@ public class MemoryService : IMemoryService
             await connection.OpenAsync();
             
             var sql = $@"
-                SELECT id, content, created_at 
+                SELECT id, content, created_at AS CreatedAt 
                 FROM {_settings.Application.TableName} 
                 WHERE content ILIKE @Query 
                 ORDER BY created_at DESC 
@@ -99,7 +99,7 @@ public class MemoryService : IMemoryService
             await using var connection = new NpgsqlConnection(_settings.ConnectionStrings.PostgreSQL);
             await connection.OpenAsync();
             
-            var sql = $"SELECT id, content, created_at FROM {_settings.Application.TableName} ORDER BY created_at DESC LIMIT @Limit";
+            var sql = $"SELECT id, content, created_at AS CreatedAt FROM {_settings.Application.TableName} ORDER BY created_at DESC LIMIT @Limit";
             var notes = await connection.QueryAsync<MemoryNote>(sql, new { Limit = _settings.Application.MaxListResults });
             
             if (!notes.Any())
